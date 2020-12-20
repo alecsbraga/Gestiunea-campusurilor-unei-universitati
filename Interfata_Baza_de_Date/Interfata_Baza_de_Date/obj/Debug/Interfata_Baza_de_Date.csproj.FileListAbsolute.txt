@@ -1,0 +1,10 @@
+C:\Users\shift\source\repos\Interfata_Baza_de_Date\Interfata_Baza_de_Date\obj\Debug\Interfata_Baza_de_Date.csprojAssemblyReference.cache
+C:\Users\shift\source\repos\Interfata_Baza_de_Date\Interfata_Baza_de_Date\obj\Debug\Interfata_Baza_de_Date.Form1.resources
+C:\Users\shift\source\repos\Interfata_Baza_de_Date\Interfata_Baza_de_Date\obj\Debug\Interfata_Baza_de_Date.Properties.Resources.resources
+C:\Users\shift\source\repos\Interfata_Baza_de_Date\Interfata_Baza_de_Date\obj\Debug\Interfata_Baza_de_Date.csproj.GenerateResource.cache
+C:\Users\shift\source\repos\Interfata_Baza_de_Date\Interfata_Baza_de_Date\obj\Debug\Interfata_Baza_de_Date.csproj.CoreCompileInputs.cache
+C:\Users\shift\source\repos\Interfata_Baza_de_Date\Interfata_Baza_de_Date\bin\Debug\Interfata_Baza_de_Date.exe.config
+C:\Users\shift\source\repos\Interfata_Baza_de_Date\Interfata_Baza_de_Date\bin\Debug\Interfata_Baza_de_Date.exe
+C:\Users\shift\source\repos\Interfata_Baza_de_Date\Interfata_Baza_de_Date\bin\Debug\Interfata_Baza_de_Date.pdb
+C:\Users\shift\source\repos\Interfata_Baza_de_Date\Interfata_Baza_de_Date\obj\Debug\Interfata_Baza_de_Date.exe
+C:\Users\shift\source\repos\Interfata_Baza_de_Date\Interfata_Baza_de_Date\obj\Debug\Interfata_Baza_de_Date.pdb
