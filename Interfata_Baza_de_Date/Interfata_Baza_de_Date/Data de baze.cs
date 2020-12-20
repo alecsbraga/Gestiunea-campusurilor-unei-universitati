@@ -686,5 +686,29 @@ namespace Interfata_Baza_de_Date
         {
 
         }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            string query = "select s.nume ,s.prenume, convert(int ,c.chirie/2) as 'chirie', cl.nume as 'camin' "+
+            "from STUDENTI s, CAMERE c, CLADIRI cl, CONTRACTE co, ANGAJATI an, JOBURI j, CAMPUSURI cam"+
+             " where s.id_camera = c.id_camera and c.id_cladire = cl.id_cladire and cl.id_cladire = co.id_cladire and co.id_angajat = an.id_angajat and an.id_job = j.id_job and cl.id_campus = cam.id_campus and lower(cam.denumire) = 'campus leu' and lower(j.denumire) = 'administrator' and an.salariul < 3500; ";
+            DataTable dttable = new DataTable();
+            objDbAccess.readDatathroughAdapter(query, dttable);
+            dataGridView4.DataSource = dttable;
+            objDbAccess.closeConn();
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            string query = "select cl.nume as 'Nume facultate', count(a.id_angajat) as 'Numarul de angajati ', cam.denumire as 'Nume campus' " +
+                "from ANGAJATI a, CONTRACTE c, CLADIRI cl, CAMPUSURI cam " +
+                "where a.id_angajat = c.id_angajat and c.id_cladire = cam.id_campus and cl.id_campus = cam.id_campus " +
+                "group by cam.denumire, cl.nume " +
+                "having lower(cl.nume) like 'facultatea%'; ";
+            DataTable dttable = new DataTable();
+            objDbAccess.readDatathroughAdapter(query, dttable);
+            dataGridView3.DataSource = dttable;
+            objDbAccess.closeConn();
+        }
     }
 }
