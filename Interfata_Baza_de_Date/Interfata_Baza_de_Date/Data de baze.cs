@@ -186,184 +186,191 @@ namespace Interfata_Baza_de_Date
         {
             string id = idtext.Text;
             string query;
-            DialogResult dialog = MessageBox.Show("Esti sigur ca vrei sa stergi informatia cu id-ul:'" + id + "'", "Informatie stearsa", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if(dialog == DialogResult.Yes)
+            
+            if (id != "")
             {
-
-                if (joburi)
+                DialogResult dialog = MessageBox.Show("Esti sigur ca vrei sa stergi informatia cu id-ul:'" + id + "'", "Informatie stearsa", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (dialog == DialogResult.Yes)
                 {
-                    query = "delete from JOBURI where id_job = " + id;
-                    SqlCommand deleteCommand = new SqlCommand(query);
-                    int row = objDbAccess.executeQuery(deleteCommand);
-                    if (row == 1)
+
+                    if (joburi)
                     {
-                        MessageBox.Show("Informatie stearsa cu succes");
-                        DataTable dtJOBURI = new DataTable();
-                        string query1 = "select * from JOBURI";
-                        objDbAccess.readDatathroughAdapter(query1, dtJOBURI);
-                        dataGridView1.DataSource = dtJOBURI;
-                        objDbAccess.closeConn();
+                        query = "delete from JOBURI where id_job = " + id;
+                        SqlCommand deleteCommand = new SqlCommand(query);
+                        int row = objDbAccess.executeQuery(deleteCommand);
+                        if (row == 1)
+                        {
+                            MessageBox.Show("Informatie stearsa cu succes");
+                            DataTable dtJOBURI = new DataTable();
+                            string query1 = "select * from JOBURI";
+                            objDbAccess.readDatathroughAdapter(query1, dtJOBURI);
+                            dataGridView1.DataSource = dtJOBURI;
+                            objDbAccess.closeConn();
+                        }
+                        else
+
+                        {
+                            MessageBox.Show("Informatia cu id-ul:" + id + " nu exista!");
+                        }
                     }
                     else
+                    if (angajati)
+                    {
+                        query = "delete from ANGAJATI where id_angajat= " + id;
+                        SqlCommand deleteCommand = new SqlCommand(query);
+                        int row = objDbAccess.executeQuery(deleteCommand);
+                        if (row == 1)
+                        {
+                            MessageBox.Show("Informatie stearsa cu succes");
+                            DataTable dtANGAJATI = new DataTable();
+                            string query1 = "select * from ANGAJATI";
+                            objDbAccess.readDatathroughAdapter(query1, dtANGAJATI);
+                            dataGridView1.DataSource = dtANGAJATI;
+                            objDbAccess.closeConn();
+                        }
+                        else
 
-                    {
-                        MessageBox.Show("Informatia cu id-ul:" + id + " nu exista!");
-                    }
-                }
-                else 
-                if (angajati)
-                {
-                    query = "delete from ANGAJATI where id_angajat= " + id;
-                    SqlCommand deleteCommand = new SqlCommand(query);
-                    int row = objDbAccess.executeQuery(deleteCommand);
-                    if (row == 1)
-                    {
-                        MessageBox.Show("Informatie stearsa cu succes");
-                        DataTable dtANGAJATI = new DataTable();
-                        string query1 = "select * from ANGAJATI";
-                        objDbAccess.readDatathroughAdapter(query1, dtANGAJATI);
-                        dataGridView1.DataSource = dtANGAJATI;
-                        objDbAccess.closeConn();
+                        {
+                            MessageBox.Show("Informatia cu id-ul:" + id + " nu exista!");
+                        }
                     }
                     else
-
+                    if (contracte)
                     {
-                        MessageBox.Show("Informatia cu id-ul:" + id + " nu exista!");
+                        query = "delete from CONTRACTE where id_contract = " + id;
+                        SqlCommand deleteCommand = new SqlCommand(query);
+                        int row = objDbAccess.executeQuery(deleteCommand);
+                        if (row == 1)
+                        {
+                            MessageBox.Show("Informatie stearsa cu succes");
+                            DataTable dtCONTRACTE = new DataTable();
+                            string query1 = "select * from CONTRACTE";
+                            objDbAccess.readDatathroughAdapter(query1, dtCONTRACTE);
+                            dataGridView1.DataSource = dtCONTRACTE;
+                            objDbAccess.closeConn();
+                        }
+                        else
+
+                        {
+                            MessageBox.Show("Informatia cu id-ul:" + id + " nu exista!");
+                        }
                     }
+                    else
+                    if (cladiri)
+                    {
+                        query = "delete from CLADIRI where id_cladire = " + id;
+                        SqlCommand deleteCommand = new SqlCommand(query);
+                        int row = objDbAccess.executeQuery(deleteCommand);
+                        if (row == 1)
+                        {
+                            MessageBox.Show("Informatie stearsa cu succes");
+                            DataTable dtCLADIRI = new DataTable();
+                            string query1 = "select * from CLADIRI";
+                            objDbAccess.readDatathroughAdapter(query1, dtCLADIRI);
+                            dataGridView1.DataSource = dtCLADIRI;
+                            objDbAccess.closeConn();
+                        }
+                        else
+
+                        {
+                            MessageBox.Show("Informatia cu id-ul:" + id + " nu exista!");
+                        }
+                    }
+                    else
+                    if (camere)
+                    {
+                        query = "delete from CAMERE where id_camera = " + id;
+                        SqlCommand deleteCommand = new SqlCommand(query);
+                        int row = objDbAccess.executeQuery(deleteCommand);
+                        if (row == 1)
+                        {
+                            MessageBox.Show("Informatie stearsa cu succes");
+                            DataTable dtCAMERE = new DataTable();
+                            string query1 = "select * from CAMERE";
+                            objDbAccess.readDatathroughAdapter(query1, dtCAMERE);
+                            dataGridView1.DataSource = dtCAMERE;
+                            objDbAccess.closeConn();
+                        }
+                        else
+
+                        {
+                            MessageBox.Show("Informatia cu id-ul:" + id + " nu exista!");
+                        }
+                    }
+                    else
+                    if (studenti)
+                    {
+                        query = "delete from STUDENTI where id_student = " + id;
+                        SqlCommand deleteCommand = new SqlCommand(query);
+                        int row = objDbAccess.executeQuery(deleteCommand);
+                        if (row == 1)
+                        {
+                            MessageBox.Show("Informatie stearsa cu succes");
+                            DataTable dtSTUDENTI = new DataTable();
+                            string query1 = "select * from STUDENTI";
+                            objDbAccess.readDatathroughAdapter(query1, dtSTUDENTI);
+                            dataGridView1.DataSource = dtSTUDENTI;
+                            objDbAccess.closeConn();
+                        }
+                        else
+
+                        {
+                            MessageBox.Show("Informatia cu id-ul:" + id + " nu exista!");
+                        }
+                    }
+                    else
+                    if (campusuri)
+                    {
+                        query = "delete from CAMPUSURI where id_campus = " + id;
+                        SqlCommand deleteCommand = new SqlCommand(query);
+                        int row = objDbAccess.executeQuery(deleteCommand);
+                        if (row == 1)
+                        {
+                            MessageBox.Show("Informatie stearsa cu succes");
+                            DataTable dtCAMPUSURI = new DataTable();
+                            string query1 = "select * from CAMPUSURI";
+                            objDbAccess.readDatathroughAdapter(query1, dtCAMPUSURI);
+                            dataGridView1.DataSource = dtCAMPUSURI;
+                            objDbAccess.closeConn();
+                        }
+                        else
+
+                        {
+                            MessageBox.Show("Informatia cu id-ul:" + id + " nu exista!");
+                        }
+                    }
+                    else
+                    if (locatii)
+                    {
+                        query = "delete from LOCATII where id_locatie = " + id;
+                        SqlCommand deleteCommand = new SqlCommand(query);
+                        int row = objDbAccess.executeQuery(deleteCommand);
+                        if (row == 1)
+                        {
+                            MessageBox.Show("Informatie stearsa cu succes");
+                            DataTable dtLOCATII = new DataTable();
+                            string query1 = "select * from LOCATII";
+                            objDbAccess.readDatathroughAdapter(query1, dtLOCATII);
+                            dataGridView1.DataSource = dtLOCATII;
+                            objDbAccess.closeConn();
+                        }
+                        else
+
+                        {
+                            MessageBox.Show("Informatia cu id-ul:" + id + " nu exista!");
+                        }
+                    }
+
+
+
                 }
                 else
-                if (contracte)
                 {
-                    query = "delete from CONTRACTE where id_contract = " + id;
-                    SqlCommand deleteCommand = new SqlCommand(query);
-                    int row = objDbAccess.executeQuery(deleteCommand);
-                    if (row == 1)
-                    {
-                        MessageBox.Show("Informatie stearsa cu succes");
-                        DataTable dtCONTRACTE = new DataTable();
-                        string query1 = "select * from CONTRACTE";
-                        objDbAccess.readDatathroughAdapter(query1, dtCONTRACTE);
-                        dataGridView1.DataSource = dtCONTRACTE;
-                        objDbAccess.closeConn();
-                    }
-                    else
-
-                    {
-                        MessageBox.Show("Informatia cu id-ul:" + id + " nu exista!");
-                    }
+                    MessageBox.Show("Nu s-a putut sterge!");
                 }
-                else
-                if (cladiri)
-                {
-                    query = "delete from CLADIRI where id_cladire = " + id;
-                    SqlCommand deleteCommand = new SqlCommand(query);
-                    int row = objDbAccess.executeQuery(deleteCommand);
-                    if (row == 1)
-                    {
-                        MessageBox.Show("Informatie stearsa cu succes");
-                        DataTable dtCLADIRI = new DataTable();
-                        string query1 = "select * from CLADIRI";
-                        objDbAccess.readDatathroughAdapter(query1, dtCLADIRI);
-                        dataGridView1.DataSource = dtCLADIRI;
-                        objDbAccess.closeConn();
-                    }
-                    else
-
-                    {
-                        MessageBox.Show("Informatia cu id-ul:" + id + " nu exista!");
-                    }
-                }
-                else
-                if (camere)
-                {
-                    query = "delete from CAMERE where id_camera = " + id;
-                    SqlCommand deleteCommand = new SqlCommand(query);
-                    int row = objDbAccess.executeQuery(deleteCommand);
-                    if (row == 1)
-                    {
-                        MessageBox.Show("Informatie stearsa cu succes");
-                        DataTable dtCAMERE = new DataTable();
-                        string query1 = "select * from CAMERE";
-                        objDbAccess.readDatathroughAdapter(query1, dtCAMERE);
-                        dataGridView1.DataSource = dtCAMERE;
-                        objDbAccess.closeConn();
-                    }
-                    else
-
-                    {
-                        MessageBox.Show("Informatia cu id-ul:" + id + " nu exista!");
-                    }
-                }
-                else
-                if (studenti)
-                {
-                    query = "delete from STUDENTI where id_student = " + id;
-                    SqlCommand deleteCommand = new SqlCommand(query);
-                    int row = objDbAccess.executeQuery(deleteCommand);
-                    if (row == 1)
-                    {
-                        MessageBox.Show("Informatie stearsa cu succes");
-                        DataTable dtSTUDENTI = new DataTable();
-                        string query1 = "select * from STUDENTI";
-                        objDbAccess.readDatathroughAdapter(query1, dtSTUDENTI);
-                        dataGridView1.DataSource = dtSTUDENTI;
-                        objDbAccess.closeConn();
-                    }
-                    else
-
-                    {
-                        MessageBox.Show("Informatia cu id-ul:" + id + " nu exista!");
-                    }
-                }
-                else
-                if (campusuri)
-                {
-                    query = "delete from CAMPUSURI where id_campus = " + id;
-                    SqlCommand deleteCommand = new SqlCommand(query);
-                    int row = objDbAccess.executeQuery(deleteCommand);
-                    if (row == 1)
-                    {
-                        MessageBox.Show("Informatie stearsa cu succes");
-                        DataTable dtCAMPUSURI = new DataTable();
-                        string query1 = "select * from CAMPUSURI";
-                        objDbAccess.readDatathroughAdapter(query1, dtCAMPUSURI);
-                        dataGridView1.DataSource = dtCAMPUSURI;
-                        objDbAccess.closeConn();
-                    }
-                    else
-
-                    {
-                        MessageBox.Show("Informatia cu id-ul:" + id + " nu exista!");
-                    }
-                }
-                else
-                if (locatii)
-                {
-                    query = "delete from LOCATII where id_locatie = " + id;
-                    SqlCommand deleteCommand = new SqlCommand(query);
-                    int row = objDbAccess.executeQuery(deleteCommand);
-                    if (row == 1)
-                    {
-                        MessageBox.Show("Informatie stearsa cu succes");
-                        DataTable dtLOCATII = new DataTable();
-                        string query1 = "select * from LOCATII";
-                        objDbAccess.readDatathroughAdapter(query1, dtLOCATII);
-                        dataGridView1.DataSource = dtLOCATII;
-                        objDbAccess.closeConn();
-                    }
-                    else
-
-                    {
-                        MessageBox.Show("Informatia cu id-ul:" + id + " nu exista!");
-                    }
-                }
-
-
             }
             else
-            {
-                MessageBox.Show("Nu s-a putut sterge!");
-            }
+                MessageBox.Show("Introduceti un id !");
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -380,90 +387,95 @@ namespace Interfata_Baza_de_Date
         {
             string id = id_cauta_text.Text;
             string query;
-            if (joburi)
+            if (id != "")
             {
-                query = "select * from JOBURI where id_job = " + id;
-                DataTable dtJOBURI = new DataTable();
-                objDbAccess.readDatathroughAdapter(query, dtJOBURI);
-                dataGridView2.DataSource = dtJOBURI;
-                objDbAccess.closeConn();
-                
-            }
-            else
-            if (angajati)
-            {
-                query = "select * from ANGAJATI where id_angajat = " + id;
-                DataTable dtANGAJATI = new DataTable();
-                objDbAccess.readDatathroughAdapter(query, dtANGAJATI);
-                dataGridView2.DataSource = dtANGAJATI;
-                objDbAccess.closeConn();
-            }
-            else
-            if (contracte)
-            {
-                query = "select* from CONTRACTE where id_contract = " + id;
-                DataTable dtCONTRACTE = new DataTable();
-                objDbAccess.readDatathroughAdapter(query, dtCONTRACTE);
-                dataGridView2.DataSource = dtCONTRACTE;
-                objDbAccess.closeConn();
+                if (joburi)
+                {
+                    query = "select * from JOBURI where id_job = " + id;
+                    DataTable dtJOBURI = new DataTable();
+                    objDbAccess.readDatathroughAdapter(query, dtJOBURI);
+                    dataGridView2.DataSource = dtJOBURI;
+                    objDbAccess.closeConn();
 
-            }
-            else
-            if (cladiri)
-            {
-                query = "select * from CLADIRI where id_cladire = " + id;
-                SqlCommand deleteCommand = new SqlCommand(query);
-                DataTable dtCLADIRI = new DataTable();
-                objDbAccess.readDatathroughAdapter(query, dtCLADIRI);
-                dataGridView2.DataSource = dtCLADIRI;
-                objDbAccess.closeConn();
+                }
+                else
+                if (angajati)
+                {
+                    query = "select * from ANGAJATI where id_angajat = " + id;
+                    DataTable dtANGAJATI = new DataTable();
+                    objDbAccess.readDatathroughAdapter(query, dtANGAJATI);
+                    dataGridView2.DataSource = dtANGAJATI;
+                    objDbAccess.closeConn();
+                }
+                else
+                if (contracte)
+                {
+                    query = "select* from CONTRACTE where id_contract = " + id;
+                    DataTable dtCONTRACTE = new DataTable();
+                    objDbAccess.readDatathroughAdapter(query, dtCONTRACTE);
+                    dataGridView2.DataSource = dtCONTRACTE;
+                    objDbAccess.closeConn();
 
-            }
-            else
-            if (camere)
-            {
-                query = "select * from CAMERE where id_camera = " + id;
-                DataTable dtCAMERE = new DataTable();
-                objDbAccess.readDatathroughAdapter(query, dtCAMERE);
-                dataGridView2.DataSource = dtCAMERE;
-                objDbAccess.closeConn();
-            }
-            else
-            if (studenti)
-            {
-                query = "select * from STUDENTI where id_student = " + id;
-                DataTable dtSTUDENTI = new DataTable();
-                objDbAccess.readDatathroughAdapter(query, dtSTUDENTI);
-                dataGridView2.DataSource = dtSTUDENTI;
-                objDbAccess.closeConn();
+                }
+                else
+                if (cladiri)
+                {
+                    query = "select * from CLADIRI where id_cladire = " + id;
+                    SqlCommand deleteCommand = new SqlCommand(query);
+                    DataTable dtCLADIRI = new DataTable();
+                    objDbAccess.readDatathroughAdapter(query, dtCLADIRI);
+                    dataGridView2.DataSource = dtCLADIRI;
+                    objDbAccess.closeConn();
 
+                }
+                else
+                if (camere)
+                {
+                    query = "select * from CAMERE where id_camera = " + id;
+                    DataTable dtCAMERE = new DataTable();
+                    objDbAccess.readDatathroughAdapter(query, dtCAMERE);
+                    dataGridView2.DataSource = dtCAMERE;
+                    objDbAccess.closeConn();
+                }
+                else
+                if (studenti)
+                {
+                    query = "select * from STUDENTI where id_student = " + id;
+                    DataTable dtSTUDENTI = new DataTable();
+                    objDbAccess.readDatathroughAdapter(query, dtSTUDENTI);
+                    dataGridView2.DataSource = dtSTUDENTI;
+                    objDbAccess.closeConn();
+
+                }
+                else
+                if (campusuri)
+                {
+                    query = "select * from CAMPUSURI where id_campus = " + id;
+                    DataTable dtCAMPUSURI = new DataTable();
+                    objDbAccess.readDatathroughAdapter(query, dtCAMPUSURI);
+                    dataGridView2.DataSource = dtCAMPUSURI;
+                    objDbAccess.closeConn();
+
+                }
+                else
+                if (locatii)
+                {
+                    query = "select * from LOCATII where id_locatie = " + id;
+                    DataTable dtLOCATII = new DataTable();
+                    objDbAccess.readDatathroughAdapter(query, dtLOCATII);
+                    dataGridView2.DataSource = dtLOCATII;
+                    objDbAccess.closeConn();
+
+                }
             }
             else
-            if (campusuri)
-            {
-                query = "select * from CAMPUSURI where id_campus = " + id;
-                DataTable dtCAMPUSURI = new DataTable();
-                objDbAccess.readDatathroughAdapter(query, dtCAMPUSURI);
-                dataGridView2.DataSource = dtCAMPUSURI;
-                objDbAccess.closeConn();
-
-            }
-            else
-            if (locatii)
-            {
-                query = "select * from LOCATII where id_locatie = " + id;
-                DataTable dtLOCATII = new DataTable();
-                objDbAccess.readDatathroughAdapter(query, dtLOCATII);
-                dataGridView2.DataSource = dtLOCATII;
-                objDbAccess.closeConn();
-
-            }
+                MessageBox.Show("Introduceti un id ");
         }
 
         private void button10_Click(object sender, EventArgs e)
         {
             string id = id_cauta_text.Text;
-            if (id != null)
+            if (id != "")
             {
                 if (joburi)
                 {
@@ -674,11 +686,12 @@ namespace Interfata_Baza_de_Date
                         MessageBox.Show("Informatia nu se poate modifica, incercati alte date");
                     }
                 }
-                else
-                {
-                    MessageBox.Show("Introduceti un id !");
-                }
             }
+            else
+            {
+                MessageBox.Show("Introduceti un id !");
+            }
+            
 
         }
 

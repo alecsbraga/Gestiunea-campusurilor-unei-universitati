@@ -91,9 +91,9 @@ namespace Interfata_Baza_de_Date
                 }
                 catch (Exception ex)
                 {
-                MessageBox.Show("Introduceti un id");
-                
-                }
+                throw ex;
+
+            }
             }
 
 
@@ -140,8 +140,10 @@ namespace Interfata_Baza_de_Date
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Introduceti alte date (contrangere) sau introduceti un id valabil !");
-                    return 0 ;
+               
+                MessageBox.Show(ex.ToString());
+                return 0;
+                //throw ex;
                 }
             }
         }
