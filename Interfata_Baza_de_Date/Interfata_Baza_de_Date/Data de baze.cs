@@ -195,7 +195,7 @@ namespace Interfata_Baza_de_Date
 
                     if (joburi)
                     {
-                        query = "delete from JOBURI where id_job = " + id;
+                        query = "delete from JOBURI where id_job = " + id ;
                         SqlCommand deleteCommand = new SqlCommand(query);
                         int row = objDbAccess.executeQuery(deleteCommand);
                         if (row == 1)
@@ -713,11 +713,11 @@ namespace Interfata_Baza_de_Date
 
         private void button12_Click(object sender, EventArgs e)
         {
-            string query = "select cl.nume as 'Nume facultate', count(a.id_angajat) as 'Numarul de angajati ', cam.denumire as 'Nume campus' " +
-                "from ANGAJATI a, CONTRACTE c, CLADIRI cl, CAMPUSURI cam " +
-                "where a.id_angajat = c.id_angajat and c.id_cladire = cam.id_campus and cl.id_campus = cam.id_campus " +
-                "group by cam.denumire, cl.nume " +
-                "having lower(cl.nume) like 'facultatea%'; ";
+            string query = "select cl.nume, count(a.id_angajat)" +
+                " from ANGAJATI a, CONTRACTE con, CLADIRI cl" +
+                " where a.id_angajat = con.id_angajat and con.id_cladire = cl.id_cladire" +
+                " group by cl.nume" +
+                " having cl.nume like 'Facultatea %'; ";
             DataTable dttable = new DataTable();
             objDbAccess.readDatathroughAdapter(query, dttable);
             dataGridView3.DataSource = dttable;
