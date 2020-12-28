@@ -689,7 +689,7 @@ namespace Interfata_Baza_de_Date
             }
             else
             {
-                MessageBox.Show("Introduceti un id !");
+                MessageBox.Show("Introduceti un id!");
             }
             
 
@@ -720,8 +720,282 @@ namespace Interfata_Baza_de_Date
                 " having cl.nume like 'Facultatea %'; ";
             DataTable dttable = new DataTable();
             objDbAccess.readDatathroughAdapter(query, dttable);
-            dataGridView3.DataSource = dttable;
+            dataGridView4.DataSource = dttable;
             objDbAccess.closeConn();
         }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            string query = "create view  Camin_A as (select s.nume, s.prenume from STUDENTI s, CAMERE ca, CLADIRI cl where s.id_camera = ca.id_camera and ca.id_cladire = cl.id_cladire and lower(cl.nume) like 'camin a')";
+            SqlCommand createviewCommand = new SqlCommand(query);
+            int row = objDbAccess.executeQuery(createviewCommand);
+            if (row !=0)
+            {
+                MessageBox.Show("Vizualizarea a fost creata cu succes!");
+                button14.Visible = true;
+
+            }
+            else
+
+            {
+                MessageBox.Show("Vizualizarea exista!");
+                
+            }
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            string query = "select *" +
+                "from Camin_A";
+            DataTable dttable = new DataTable();
+            objDbAccess.readDatathroughAdapter(query, dttable);
+            dataGridView4.DataSource = dttable;
+            objDbAccess.closeConn();
+        }
+
+        private void button16_Click(object sender, EventArgs e)
+        {
+            string query = "create view nr_studenti as (select cam.denumire, cl.nume, count(s.id_student) as 'Numarul studentilor' from STUDENTI s, CAMERE ca, CLADIRI cl, CAMPUSURI cam where s.id_camera = ca.id_camera and ca.id_cladire = cl.id_cladire and cl.id_campus = cam.id_campus group by cam.denumire, cl.nume having lower(cl.nume) like 'camin%')";
+            SqlCommand createCommand = new SqlCommand(query);
+            int row = objDbAccess.executeQuery(createCommand);
+            if (row != 0)
+            {
+                MessageBox.Show("Vizualizarea a fost creata cu succes");
+                button15.Visible = true;
+            }
+            else
+
+            {
+                MessageBox.Show("Vizualizarea exista!");
+            }
+        }
+
+        private void button15_Click(object sender, EventArgs e)
+        {
+            string query = "select *" +
+            "from nr_studenti";
+            DataTable dttable = new DataTable();
+            objDbAccess.readDatathroughAdapter(query, dttable);
+            dataGridView4.DataSource = dttable;
+            objDbAccess.closeConn();
+        }
+
+        private void button17_Click(object sender, EventArgs e)
+        {
+
+                    if (joburi)
+                    {
+                        string id = dataGridView1.Rows[dataGridView1.Rows.Count -2].Cells[0].Value.ToString();
+                        string denumire = dataGridView1.Rows[dataGridView1.Rows.Count -2].Cells[1].Value.ToString();
+                        string salariu_minim = dataGridView1.Rows[dataGridView1.Rows.Count -2].Cells[2].Value.ToString();
+                        string salariu_maxim = dataGridView1.Rows[dataGridView1.Rows.Count -2].Cells[3].Value.ToString();
+                        string query = "insert into JOBURI (id_job,denumire,salariul_minim,salariul_maxim) values("+ id + ",'" + denumire + "'," + salariu_minim + ", " + salariu_maxim + ");";
+                        SqlCommand updateCommand = new SqlCommand(query);
+                        int row = objDbAccess.executeQuery(updateCommand);
+                        if (row == 1)
+                        {
+                            MessageBox.Show("Informatia a fost adaugata cu succes");
+                            DataTable dtJOBURI = new DataTable();
+                            string query1 = "select * from JOBURI";
+                            objDbAccess.readDatathroughAdapter(query1, dtJOBURI);
+                            dataGridView1.DataSource = dtJOBURI;
+                            objDbAccess.closeConn();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Informatia nu s-a putut adauga, incercati alte date");
+                        }
+                    }
+                    else
+                    if (locatii)
+                    {
+                        string id = dataGridView1.Rows[dataGridView1.Rows.Count - 2].Cells[0].Value.ToString();
+                        string sector = dataGridView1.Rows[dataGridView1.Rows.Count - 2].Cells[1].Value.ToString();
+                        string cartier = dataGridView1.Rows[dataGridView1.Rows.Count - 2].Cells[2].Value.ToString();
+                        string cod_postal = dataGridView1.Rows[dataGridView1.Rows.Count - 2].Cells[3].Value.ToString();
+                        string query = "insert into LOCATII (id_locatie, sector, cartier, cod_postal) values(" +id +",'"+ sector + "', '" + cartier + "' ,  " + cod_postal + ");";
+                        SqlCommand updateCommand = new SqlCommand(query);
+                        int row = objDbAccess.executeQuery(updateCommand);
+                        if (row == 1)
+                        {
+                            MessageBox.Show("Informatia a fost adauagat cu succes");
+                            DataTable dtLOCATII = new DataTable();
+                            string query1 = "select * from LOCATII";
+                            objDbAccess.readDatathroughAdapter(query1, dtLOCATII);
+                            dataGridView1.DataSource = dtLOCATII;
+                            objDbAccess.closeConn();
+                        }
+                        else
+
+                        {
+                            MessageBox.Show("Informatia nu s-a putat adauga, incercati alte date");
+                        }
+                    }
+                    else
+                    if (campusuri)
+                    {
+                        string id = dataGridView1.Rows[dataGridView1.Rows.Count - 2].Cells[0].Value.ToString();
+                        string denumire = dataGridView1.Rows[dataGridView1.Rows.Count - 2].Cells[1].Value.ToString();
+                        string id_locatie = dataGridView1.Rows[dataGridView1.Rows.Count - 2].Cells[2].Value.ToString();
+                        string query = "insert into CAMPUSURI (id_campus, denumire, id_locatie) values (" + id + ",'" + denumire + "'," + id_locatie + ")";
+                        SqlCommand updateCommand = new SqlCommand(query);
+                        int row = objDbAccess.executeQuery(updateCommand);
+                        if (row == 1)
+                        {
+                            MessageBox.Show("Informatia a fost adaugata cu succes");
+                            DataTable dtCAMPUSURI = new DataTable();
+                            string query1 = "select * from CAMPUSURI";
+                            objDbAccess.readDatathroughAdapter(query1, dtCAMPUSURI);
+                            dataGridView1.DataSource = dtCAMPUSURI;
+                            objDbAccess.closeConn();
+                        }
+                        else
+
+                        {
+                            MessageBox.Show("Informatia nu s-a putut adaugat, incercati alte date");
+                        }
+                    }
+                    else
+                    if (cladiri)
+                    {
+                        string id = dataGridView1.Rows[dataGridView1.Rows.Count - 2].Cells[0].Value.ToString();
+                        string nume = dataGridView1.Rows[dataGridView1.Rows.Count - 2].Cells[1].Value.ToString();
+                        string nr_etaje = dataGridView1.Rows[dataGridView1.Rows.Count - 2].Cells[2].Value.ToString();
+                        string id_campus = dataGridView1.Rows[dataGridView1.Rows.Count - 2].Cells[3].Value.ToString();
+                        string query = "insert into CLADIRI (id_cladire, nume, nr_etaje, id_campus) values ( "+ id + ",'" + nume + "', " + nr_etaje + "," + id_campus + ");";
+                        SqlCommand updateCommand = new SqlCommand(query);
+                        int row = objDbAccess.executeQuery(updateCommand);
+                        if (row == 1)
+                        {
+                            MessageBox.Show("Informatia a fost adaugata cu succes");
+                            DataTable dtCLADIRI = new DataTable();
+                            string query1 = "select * from CLADIRI";
+                            objDbAccess.readDatathroughAdapter(query1, dtCLADIRI);
+                            dataGridView1.DataSource = dtCLADIRI;
+                            objDbAccess.closeConn();
+                        }
+                        else
+
+                        {
+                            MessageBox.Show("Informatia nu s-a putut adaugat, incercati alte date");
+                        }
+                    }
+                    else
+                    if (camere)
+                    {
+                        string id = dataGridView1.Rows[dataGridView1.Rows.Count - 2].Cells[0].Value.ToString();
+                        string numar_camera = dataGridView1.Rows[dataGridView1.Rows.Count - 2].Cells[1].Value.ToString();
+                        string dimensiune = dataGridView1.Rows[dataGridView1.Rows.Count - 2].Cells[2].Value.ToString();
+                        string chirie = dataGridView1.Rows[dataGridView1.Rows.Count - 2].Cells[3].Value.ToString();
+                        string id_cladire = dataGridView1.Rows[dataGridView1.Rows.Count - 2].Cells[4].Value.ToString();
+                        string query = "insert into CAMERE(id_camera, numar_camera, dimensiune, chirie, id_cladire) values(" + id +","+ numar_camera + "," + dimensiune + "," + chirie + ", " + id_cladire + ");";
+                        SqlCommand updateCommand = new SqlCommand(query);
+                        int row = objDbAccess.executeQuery(updateCommand);
+                        if (row == 1)
+                        {
+                            MessageBox.Show("Informatia a fost adaugata cu succes");
+                            DataTable dtCAMERE = new DataTable();
+                            string query1 = "select * from CAMERE";
+                            objDbAccess.readDatathroughAdapter(query1, dtCAMERE);
+                            dataGridView1.DataSource = dtCAMERE;
+                            objDbAccess.closeConn();
+                        }
+                        else
+
+                        {
+                            MessageBox.Show("Informatia nu s-a putut adaugat, incercati alte date");
+                        }
+                    }
+                    else
+                    if (studenti)
+                    {
+                        string id = dataGridView1.Rows[dataGridView1.Rows.Count - 2].Cells[0].Value.ToString();
+                        string nume = dataGridView1.Rows[dataGridView1.Rows.Count - 2].Cells[1].Value.ToString();
+                        string prenume = dataGridView1.Rows[dataGridView1.Rows.Count - 2].Cells[2].Value.ToString();
+                        string sex = dataGridView1.Rows[dataGridView1.Rows.Count - 2].Cells[3].Value.ToString();
+                        string oras = dataGridView1.Rows[dataGridView1.Rows.Count - 2].Cells[4].Value.ToString();
+                        string email = dataGridView1.Rows[dataGridView1.Rows.Count - 2].Cells[5].Value.ToString();
+                        string nr_telefon = dataGridView1.Rows[dataGridView1.Rows.Count - 2].Cells[6].Value.ToString();
+                        string id_camera = dataGridView1.Rows[dataGridView1.Rows.Count - 2].Cells[7].Value.ToString();
+                        string query = "insert into STUDENTI (id_student, nume, prenume, sex, oras, email, nr_telefon, id_camera) values ("+ id + ",'"+ nume + "', '" + prenume + "' , '" + sex + "','" + oras + "' , '" + email + "' , '" + nr_telefon + "'," + id_camera + " )";
+                        SqlCommand updateCommand = new SqlCommand(query);
+                        int row = objDbAccess.executeQuery(updateCommand);
+                        if (row == 1)
+                        {
+                            MessageBox.Show("Informatia a fost adaugata cu succes");
+                            DataTable dtSTUNDETI = new DataTable();
+                            string query1 = "select * from STUDENTI";
+                            objDbAccess.readDatathroughAdapter(query1, dtSTUNDETI);
+                            dataGridView1.DataSource = dtSTUNDETI;
+                            objDbAccess.closeConn();
+                        }
+                        else
+
+                        {
+                            MessageBox.Show("Informatia nu s-a putut adaugat, incercati alte date");
+                        }
+                    }
+                    else
+                    if (angajati)
+                    {
+                        string id = dataGridView1.Rows[dataGridView1.Rows.Count - 2].Cells[0].Value.ToString();
+                        string nume = dataGridView1.Rows[dataGridView1.Rows.Count - 2].Cells[1].Value.ToString();
+                        string prenume = dataGridView1.Rows[dataGridView1.Rows.Count - 2].Cells[2].Value.ToString();
+                        string data_nasteri = dataGridView1.Rows[dataGridView1.Rows.Count - 2].Cells[3].Value.ToString();
+                        string oras = dataGridView1.Rows[dataGridView1.Rows.Count - 2].Cells[4].Value.ToString();
+                        string strada = dataGridView1.Rows[dataGridView1.Rows.Count - 2].Cells[5].Value.ToString();
+                        string nr_telefon = dataGridView1.Rows[dataGridView1.Rows.Count - 2].Cells[6].Value.ToString();
+                        string salariu = dataGridView1.Rows[dataGridView1.Rows.Count - 2].Cells[7].Value.ToString();
+                        string id_job = dataGridView1.Rows[dataGridView1.Rows.Count - 2].Cells[8].Value.ToString();
+                        string query = "insert into ANGAJATI (id_angajat, nume, prenume, data_nastere,oras, strada, nr_telefon, salariul, id_job) values ("+ id + ",'"+ nume + "','" + prenume + "' ,convert(date,'" + data_nasteri + "',103) ,'" + oras + "' , '" + strada + "' , '" + nr_telefon + "' ," + salariu + "," + id_job + ");";
+                        SqlCommand updateCommand = new SqlCommand(query);
+                        int row = objDbAccess.executeQuery(updateCommand);
+                        if (row == 1)
+                        {
+                            MessageBox.Show("Informatia a fost adaugata cu success");
+                            DataTable dtANGAJATI = new DataTable();
+                            string query1 = "select * from ANGAJATI";
+                            objDbAccess.readDatathroughAdapter(query1, dtANGAJATI);
+                            dataGridView1.DataSource = dtANGAJATI;
+                            objDbAccess.closeConn();
+                        }
+                        else
+
+                        {
+                            MessageBox.Show("Informatia nu s-a putut adaugat, incercati alte date");
+                        }
+                    }
+                    else
+                    if (contracte)
+                    {
+                        string id = dataGridView1.Rows[dataGridView1.Rows.Count - 2].Cells[2].Value.ToString();
+                        string data_inceput = dataGridView1.Rows[dataGridView1.Rows.Count - 2].Cells[0].Value.ToString();
+                        string data_final = dataGridView1.Rows[dataGridView1.Rows.Count - 2].Cells[1].Value.ToString();
+                        string id_cladire = dataGridView1.Rows[dataGridView1.Rows.Count - 2].Cells[3].Value.ToString();
+                        string id_angajat = dataGridView1.Rows[dataGridView1.Rows.Count - 2].Cells[4].Value.ToString();
+                        string query = "insert into CONTRACTE (data_inceput, data_final, id_contract, id_cladire, id_angajat) values ( convert(date,'" + data_inceput + "',103) ,convert(date,'" + data_final + "',103), "+ id +","+ id_cladire + "," + id_angajat +")";
+                        SqlCommand updateCommand = new SqlCommand(query);
+                        int row = objDbAccess.executeQuery(updateCommand);
+                        if (row == 1)
+                        {
+                            MessageBox.Show("Informatia a fost adaugata cu success");
+                            DataTable dtCONTRACTE = new DataTable();
+                            string query1 = "select * from CONTRACTE";
+                            objDbAccess.readDatathroughAdapter(query1, dtCONTRACTE);
+                            dataGridView1.DataSource = dtCONTRACTE;
+                            objDbAccess.closeConn();
+                        }
+                        else
+
+                        {
+                            MessageBox.Show("Informatia nu s-a putut adaugat, incercati alte date");
+                        }
+                    }
+
+
+
+          
+        }
+        
     }
 }

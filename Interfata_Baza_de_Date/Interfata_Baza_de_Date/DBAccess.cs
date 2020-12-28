@@ -19,7 +19,7 @@ namespace Interfata_Baza_de_Date
             public SqlTransaction DbTran;
 
         ///private static string strConnString = "Data Source=(local);Initial Catalog=Gestiunea_campusurilor_unei_universitati;Integrated Security=True";
-        private static string strConnString = "Data Source=192.168.1.8;Initial Catalog=Gestiunea_campusurilor_unei_universitati;USER ID=alecs;PASSWORD=alecs2972";
+        private static string strConnString = "Data Source=192.168.1.9;Initial Catalog=Gestiunea_campusurilor_unei_universitati;USER ID=alecs;PASSWORD=alecs2972";
 
 
             public void createConn()
